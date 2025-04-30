@@ -1,0 +1,41 @@
+@using PhishGuardWeb.Models
+@model List<PhishGuardWeb.Models.ActivityLog>
+
+@{
+    ViewData["Title"] = "Scan History";
+}
+
+<div class="container mt-5">
+    <h2>Scan History</h2>
+    <table class="table table-bordered mt-3">
+        <thead class="thead-dark" style="color:white">
+            <tr>
+                <th>Date and Time</th>
+                <th>Task Performed</th>
+                <th>File/URL</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody style="color:white">
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var activity in Model.OrderByDescending(a => a.Timestamp))
+                {
+                    <tr>
+                        <td>@activity.Timestamp.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                        <td>@activity.TaskPerformed</td>
+                        <td>@activity.Input</td>
+                        <td>@activity.Result</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="text-center">No scan activity recorded in this session yet.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-action="ClearHistory" class="btn btn-danger mt-3">Clear History</a>
+</div>

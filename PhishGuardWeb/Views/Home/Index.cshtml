@@ -1,0 +1,181 @@
+@{
+    ViewData["Title"] = "Welcome to RustySharks";
+}
+
+@{
+    var style = @"
+<style>
+    
+    header {
+        display: flex;
+        justify-content: space-between; /* Push elements to the edges */
+        align-items: center; /* Vertically center items */
+    
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+    }
+
+    .logo {
+        color: #fff;
+        font-size: 2.2rem;
+        font-weight: 700;
+        text-decoration: none;
+        letter-spacing: -0.02em;
+    }
+
+    .disp {
+        padding: 0px;
+        border-radius: 10px;
+        text-align: left;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        max-width: 80%;
+        margin-top:10rem;
+        
+    }
+
+    h1.display-4 {
+        color: #fff;
+        font-size: 4rem;
+        margin-bottom: 20px;
+        font-weight: 700;
+        letter-spacing: -0.05rem;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    p.lead {
+        color: #eee;
+        font-size: 1.5rem;
+        line-height: 1.7;
+        margin-bottom: 30px;
+        font-weight: 300;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .btn-primary {
+        background-color: #6d28d9;
+        border-color: #6d28d9;
+        color: #fff;
+        padding: 15px 35px;
+        border-radius: 10px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.2s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .btn-primary:hover {
+        background-color: #4c1d95;
+        border-color: #4c1d95;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+        transform: translateY(-2px);
+    }
+
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        header {
+            flex-direction: column;
+            text-align: center;
+        }
+
+       
+
+        .container {
+            text-align: right;
+            align-items: right;
+        }
+
+        h1.display-4 {
+            font-size: 3rem;
+        }
+
+        p.lead {
+            font-size: 1.1rem;
+        }
+    }
+
+    /* Add animation for the main content */
+    h1.display-4 {
+        animation: fadeIn 2s ease-in-out;
+        opacity: 0;
+        animation-fill-mode: forwards;
+    }
+
+    a.btn-primary{
+        animation: fadeIn 2s ease-in-out;
+        opacity: 0;
+        animation-fill-mode: forwards;
+    }
+
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+     .typed-line {
+        display: block; /* Ensure each line is on a new line */
+        overflow: hidden; /* Hide the characters as they are typed */
+        white-space: nowrap; /* Prevent text from wrapping */
+        margin-bottom: 5px; /* Adjust spacing between lines if needed */
+        color: transparent; /* Make the text invisible initially */
+        text-shadow: none; /* Override any existing text-shadow */
+    }
+
+    /* Define the typing animation for each line */
+    @keyframes type-line1 {
+        from { width: 0; color: transparent; text-shadow: none; } /* Start with no width, invisible text, and no shadow */
+        to { width: 50ch; color: #eee; text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); } /* End with full width, visible text, and the original shadow */
+    }
+
+    @keyframes type-line2 {
+        from { width: 0; color: transparent; text-shadow: none; }
+        to { width: 45ch; color: #eee; text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); }
+    }
+    
+    /* Apply the animation to each line with a delay */
+    #line1 {
+        animation: type-line1 2s steps(50, end) 0s forwards; /* Adjust duration and delay */
+    }
+
+    #line2 {
+        animation: type-line2 1.6s steps(45, end) 1.9s forwards; /* Adjust duration and delay */
+    }
+
+</style>
+";
+    @Html.Raw(style);
+}
+
+<div class="disp">
+    <h1 class="display-4">Sniffer Dog <i class="fas fa-shield-alt me-2"></i></h1>
+    <p class="lead">
+        <span class="typed-line" id="line1"></span>
+        <span class="typed-line" id="line2"></span> 
+    </p>
+    <a href="/Home/Scan" class="btn btn-primary btn-lg mt-3">Start Scanning</a>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const line1Span = document.getElementById('line1');
+        const line2Span = document.getElementById('line2');
+        
+        line1Span.textContent = "An AI-powered system to detect phishing threats using ";
+        line2Span.textContent = "Machine Learning, Java, and VirusTotal API.";
+        
+    });
+</script>
+
